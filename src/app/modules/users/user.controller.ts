@@ -38,7 +38,59 @@ const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+const getUserByEmail = async (req: Request, res: Response) => {
+  try {
+    const userByEmail = await UserServices.getUserByEmail(req.params.email);
+    if (userByEmail) {
+      res.status(200).json({
+        success: true,
+        message: 'User with this email founded successfully',
+        data: userByEmail,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: 'User with this email not found',
+        error: { code: 404, description: 'User not found!' },
+      });
+    }
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Something went wrong',
+      error: error,
+    });
+  }
+};
+
+const getUserById = async (req: Request, res: Response) => {
+  try {
+    const userById = await UserServices.getUserById(req.params.userId);
+    if (userById) {
+      res.status(200).json({
+        success: true,
+        message: 'User with this id founded successfully',
+        data: userById,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: 'User with this not found',
+        error: { code: 404, descption : 'User with this id could not be found' },
+      });
+    }
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Something went wrong',
+      error: error,
+    });
+  }
+};
+
 export const UserControllers = {
   createUsers,
   getUsers,
+  getUserByEmail,
+  getUserById,
 };
