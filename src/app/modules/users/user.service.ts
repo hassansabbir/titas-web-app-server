@@ -6,9 +6,10 @@ const createUserToDb = async (user: TUser) => {
     const result = await UserModel.create(user);
     return result;
   } catch (error: any) {
+    console.error('Error creating user:', error);
     if (error.code === 11000 || error.code === 11001) {
       return Promise.reject(
-        new Error('User with the same userId already exists.'),
+        new Error('User with the same studentId already exists.'),
       );
     }
     return Promise.reject(error);
