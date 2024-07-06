@@ -6,6 +6,7 @@ const createUsers = async (req: Request, res: Response) => {
   try {
     const userData = req.body;
     const ZodParsedData = userValidationSchema.parse(userData);
+    // console.log(ZodParsedData);
     const result = await UserServices.createUserToDb(ZodParsedData);
     res.status(200).json({
       success: true,
@@ -76,7 +77,7 @@ const getUserById = async (req: Request, res: Response) => {
       res.status(404).json({
         success: false,
         message: 'User with this not found',
-        error: { code: 404, descption : 'User with this id could not be found' },
+        error: { code: 404, descption: 'User with this id could not be found' },
       });
     }
   } catch (error: any) {

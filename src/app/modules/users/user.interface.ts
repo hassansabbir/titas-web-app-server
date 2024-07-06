@@ -1,9 +1,8 @@
 export interface TUser {
-  userId?: string;
+  studentId: string;
   fullName: string;
-  email: string;
-  phoneNumber: string;
-  userName: string;
+  class: string;
+  rollNumber: string;
   password: string;
   role: 'superAdmin' | 'admin' | 'teacher' | 'student';
   isDeleted: boolean;
