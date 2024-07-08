@@ -63,20 +63,23 @@ const getUserByEmail = async (req: Request, res: Response) => {
   }
 };
 
-const getUserById = async (req: Request, res: Response) => {
+const getStudentById = async (req: Request, res: Response) => {
   try {
-    const userById = await UserServices.getUserById(req.params.userId);
-    if (userById) {
+    const studentById = await UserServices.getStudentById(req.params.studentId);
+    if (studentById) {
       res.status(200).json({
         success: true,
-        message: 'User with this id founded successfully',
-        data: userById,
+        message: 'Student with this id founded successfully',
+        data: studentById,
       });
     } else {
       res.status(404).json({
         success: false,
-        message: 'User with this not found',
-        error: { code: 404, descption: 'User with this id could not be found' },
+        message: 'Student with this not found',
+        error: {
+          code: 404,
+          descption: 'Student with this id could not be found',
+        },
       });
     }
   } catch (error: any) {
@@ -92,5 +95,5 @@ export const UserControllers = {
   createUsers,
   getUsers,
   getUserByEmail,
-  getUserById,
+  getStudentById,
 };

@@ -37,12 +37,12 @@ const getUserByEmail = async (email: string) => {
   }
 };
 
-const getUserById = async (userId: string) => {
+const getStudentById = async (studentId: string) => {
   try {
-    const userById = await UserModel.findOne({
-      userId,
+    const studentById = await UserModel.findOne({
+      studentId,
     });
-    return userById;
+    return studentById;
   } catch (error: any) {
     if (error.code === 11000 || error.code === 11001) {
       return Promise.reject(new Error('User with the same id already exist'));
@@ -54,5 +54,5 @@ export const UserServices = {
   createUserToDb,
   getAllUserFromDb,
   getUserByEmail,
-  getUserById,
+  getStudentById,
 };

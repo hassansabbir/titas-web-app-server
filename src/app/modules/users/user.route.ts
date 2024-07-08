@@ -6,5 +6,5 @@ const router = express.Router();
 router.post('/users', UserControllers.createUsers);
 router.get('/users', UserControllers.getUsers);
 router.get('/users/:email', UserControllers.getUserByEmail);
-router.get('/user/:userId', UserControllers.getUserById);
+router.get('/user/:studentId', UserControllers.getStudentById);
 export const UserRoutes = router;
