@@ -1,20 +1,20 @@
 import { z } from 'zod';
 
 export const guardianInfoValidation = z.object({
-  guardianName: z.string(),
-  guardianContact: z.string(),
-  guardianRelation: z.string(),
+  guardianName: z.string().optional(),
+  guardianContact: z.string().optional(),
+  guardianRelation: z.string().optional(),
 });
 export const userValidationSchema = z.object({
   studentId: z.string().min(1),
   fullName: z.string().min(1),
   class: z.string().min(1),
   rollNumber: z.string().min(1),
-  image: z.string(),
-  email: z.string(),
-  address: z.string(),
-  phoneNumber: z.string(),
-  guardianDetails: guardianInfoValidation,
+  image: z.string().optional(),
+  email: z.string().optional(),
+  address: z.string().optional(),
+  phoneNumber: z.string().optional(),
+  guardianDetails: guardianInfoValidation.optional(),
   password: z.string().min(1),
   role: z.enum(['superAdmin', 'admin', 'teacher', 'student']),
   isDeleted: z.boolean(),

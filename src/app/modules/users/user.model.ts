@@ -2,9 +2,9 @@ import { Schema, model } from 'mongoose';
 import { TGuardian, TUser } from './user.interface';
 
 const guardianSchema = new Schema<TGuardian>({
-  guardianContact: { type: String },
-  guardianRelation: { type: String },
-  guardianName: { type: String },
+  guardianContact: { type: String, default: undefined },
+  guardianRelation: { type: String, default: undefined },
+  guardianName: { type: String, default: undefined },
 });
 
 const userSchema = new Schema<TUser>(
@@ -13,10 +13,10 @@ const userSchema = new Schema<TUser>(
     fullName: { type: String, required: [true, 'Full Name is required'] },
     class: { type: String, required: [true, 'Class is required'] },
     rollNumber: { type: String, required: [true, 'Roll is required'] },
-    image: { type: String },
-    email: { type: String },
-    address: { type: String },
-    phoneNumber: { type: String },
+    image: { type: String, default: undefined },
+    email: { type: String, default: undefined },
+    address: { type: String, default: undefined },
+    phoneNumber: { type: String, default: undefined },
     guardianDetails: guardianSchema,
     password: { type: String, required: [true, 'Password is required'] },
     role: { type: String, enum: ['superAdmin', 'admin', 'teacher', 'student'] },
