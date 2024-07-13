@@ -10,6 +10,7 @@ export const userValidationSchema = z.object({
   fullName: z.string().min(1),
   class: z.string().min(1),
   rollNumber: z.string().min(1),
+  bloodGroup: z.string().optional(),
   image: z.string().optional(),
   email: z.string().optional(),
   address: z.string().optional(),

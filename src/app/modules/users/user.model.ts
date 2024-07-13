@@ -13,6 +13,7 @@ const userSchema = new Schema<TUser>(
     fullName: { type: String, required: [true, 'Full Name is required'] },
     class: { type: String, required: [true, 'Class is required'] },
     rollNumber: { type: String, required: [true, 'Roll is required'] },
+    bloodGroup: { type: String, default: undefined },
     image: { type: String, default: undefined },
     email: { type: String, default: undefined },
     address: { type: String, default: undefined },
