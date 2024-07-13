@@ -16,6 +16,22 @@ const createUserToDb = async (user: TUser) => {
   }
 };
 
+export const updateStudentById = async (
+  studentId: string,
+  data: Partial<TUser>,
+): Promise<TUser | null> => {
+  try {
+    const updatedUser = await UserModel.findOneAndUpdate({ studentId }, data, {
+      new: true,
+    });
+
+    return updatedUser;
+  } catch (error) {
+    console.error('Error in updateStudentById service:', error);
+    throw error;
+  }
+};
+
 const getAllUserFromDb = async () => {
   const result = await UserModel.find({}, { __v: 0 });
   return result;
@@ -52,6 +68,7 @@ const getStudentById = async (studentId: string) => {
 };
 export const UserServices = {
   createUserToDb,
+  updateStudentById,
   getAllUserFromDb,
   getUserByEmail,
   getStudentById,
