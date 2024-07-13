@@ -32,6 +32,23 @@ export const updateStudentById = async (
   }
 };
 
+const updateImageByStudentId = async (
+  studentId: string,
+  imageUrl: string,
+): Promise<TUser | null> => {
+  try {
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { studentId },
+      { image: imageUrl },
+      { new: true },
+    );
+    return updatedUser;
+  } catch (error: any) {
+    console.error('Error in updateImageByStudentId service:', error);
+    throw error;
+  }
+};
+
 const getAllUserFromDb = async () => {
   const result = await UserModel.find({}, { __v: 0 });
   return result;
@@ -69,6 +86,7 @@ const getStudentById = async (studentId: string) => {
 export const UserServices = {
   createUserToDb,
   updateStudentById,
+  updateImageByStudentId,
   getAllUserFromDb,
   getUserByEmail,
   getStudentById,
