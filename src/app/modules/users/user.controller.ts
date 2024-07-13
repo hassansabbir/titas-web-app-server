@@ -45,6 +45,48 @@ export const updateStudentById = async (req: Request, res: Response) => {
   }
 };
 
+const updateImageByStudentId = async (req: Request, res: Response) => {
+  try {
+    const studentId = req.params.studentId;
+    const { image } = req.body;
+
+    if (!image) {
+      return res.status(400).json({
+        success: false,
+        message: 'Image URL is required',
+      });
+    }
+
+    const updatedUser = await UserServices.updateImageByStudentId(
+      studentId,
+      image,
+    );
+
+    if (updatedUser) {
+      res.status(200).json({
+        success: true,
+        message: 'User image updated successfully',
+        data: updatedUser,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: 'User with this studentId not found',
+        error: {
+          code: 404,
+          description: 'User not found!',
+        },
+      });
+    }
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Something went wrong',
+      error: error,
+    });
+  }
+};
+
 const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await UserServices.getAllUserFromDb();
@@ -118,6 +160,7 @@ const getStudentById = async (req: Request, res: Response) => {
 export const UserControllers = {
   createUsers,
   updateStudentById,
+  updateImageByStudentId,
   getUsers,
   getUserByEmail,
   getStudentById,
