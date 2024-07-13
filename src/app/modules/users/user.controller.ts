@@ -21,6 +21,30 @@ const createUsers = async (req: Request, res: Response) => {
   }
 };
 
+export const updateStudentById = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.studentId;
+    const validatedData = userValidationSchema.parse(req.body);
+
+    const updatedUser = await UserServices.updateStudentById(
+      userId,
+      validatedData,
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'User details updated successfully',
+      data: updatedUser,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Something went wrong',
+      error: error,
+    });
+  }
+};
+
 const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await UserServices.getAllUserFromDb();
@@ -93,6 +117,7 @@ const getStudentById = async (req: Request, res: Response) => {
 
 export const UserControllers = {
   createUsers,
+  updateStudentById,
   getUsers,
   getUserByEmail,
   getStudentById,

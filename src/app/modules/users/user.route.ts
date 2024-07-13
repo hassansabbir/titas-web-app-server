@@ -7,4 +7,5 @@ router.post('/users', UserControllers.createUsers);
 router.get('/users', UserControllers.getUsers);
 router.get('/users/:email', UserControllers.getUserByEmail);
 router.get('/user/:studentId', UserControllers.getStudentById);
+router.patch('/user/:studentId', UserControllers.updateStudentById);
 export const UserRoutes = router;
