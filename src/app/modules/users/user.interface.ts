@@ -7,6 +7,7 @@ export interface TUser {
   studentId: string;
   image?: string | undefined;
   email?: string | undefined;
+  bloodGroup?: string | undefined;
   address?: string | undefined;
   guardianDetails?: TGuardian | undefined;
   phoneNumber?: string | undefined;
