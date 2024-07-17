@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/students', StudentControllers.createStudents);
 router.get('/students', StudentControllers.getStudents);
-router.get('/student/:email', StudentControllers.getStudentByEmail);
+router.get('/students/:email', StudentControllers.getStudentByEmail);
 router.get('/student/:studentId', StudentControllers.getStudentById);
 router.patch('/student/:studentId', StudentControllers.updateStudentById);
 router.patch(
